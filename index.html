@@ -20,41 +20,41 @@
     <div class="tooltip" id="tooltip"></div>
 
     <script>
-        // Main configuration
+        // main configuration
         const width = 800;  
         const height = 1000; 
         const pointSize = 12; 
         const hoverRadius = 30; 
         
-        // Values anatomically correct locations
+        // values to plot point anatomically
         const points = [
-            { id: 1, x: 399, y: 563, name: "Colorectal" },        // Lower abdomen
-            { id: 2, x: 399, y: 375, name: "Stomach" },           // Upper abdomen
-            { id: 3, x: 439, y: 438, name: "Biliary/Pancreas" },  // Right upper abdomen
-            { id: 4, x: 399, y: 500, name: "Vascular" },          // Central/left abdomen
-            { id: 5, x: 299, y: 313, name: "Breast" },            // Left chest
-            { id: 6, x: 359, y: 400, name: "Hepatic" },           // Right upper abdomen (liver)
-            { id: 7, x: 399, y: 225, name: "Thyroid" }            // Neck
+            { id: 1, x: 399, y: 563, name: "Colorectal" },        // lower abdomen
+            { id: 2, x: 399, y: 375, name: "Stomach" },           // upper abdomen
+            { id: 3, x: 439, y: 438, name: "Biliary/Pancreas" },  // right upper abdomen
+            { id: 4, x: 399, y: 500, name: "Vascular" },          // central/left abdomen
+            { id: 5, x: 299, y: 313, name: "Breast" },            // left chest
+            { id: 6, x: 359, y: 400, name: "Hepatic" },           // right upper abdomen (liver)
+            { id: 7, x: 399, y: 225, name: "Thyroid" }            // neck
         ];
         
-        // State tracking for selected points
+        // tracking for selected points
         const selectedPoints = new Set();
         let activePoint = null;
         
-        // Create SVG for silhouette
+        // create SVG for silhouette
         const svg = d3.select("#silhouette")
             .append("svg")
             .attr("width", width)
             .attr("height", height);
         
-        // Add the silhouette image
+        // add the silhouette image
         svg.append("image")
-            .attr("href", "images/male_figure.png") // Path to your silhouette image --> WOULD NEED A VARIABLE TO CHANGE
+            .attr("href", "images/male_figure.png") // path to  silhouette image --> WOULD NEED A VARIABLE TO CHANGE
             .attr("width", width)
             .attr("height", height)
             .attr("preserveAspectRatio", "xMidYMid meet");
         
-        // Create points
+        // create points
         const diamonds = svg.selectAll(".point")
             .data(points)
             .enter()
@@ -63,14 +63,14 @@
             .attr("d", d => {
                 return `M${d.x},${d.y-pointSize} L${d.x+pointSize},${d.y} L${d.x},${d.y+pointSize} L${d.x-pointSize},${d.y} Z`;
             })
-            .attr("fill", "#000000") // Black by default
+            .attr("fill", "#000000") // black by default
             .attr("stroke", "#444444")
             .attr("stroke-width", 1.5);
         
-        // Get tooltip element
+        // get tooltip element
         const tooltip = d3.select("#tooltip");
         
-        // Larger area for easier hovering
+        // larger area for easier hovering
         const hoverAreas = svg.selectAll(".hover-area")
             .data(points)
             .enter()
@@ -82,71 +82,82 @@
             .attr("fill", "transparent")
             .style("pointer-events", "all")
             .on("mouseover", function(event, d) {
-                // Highlight the corresponding diamond
-                d3.select(diamonds.nodes()[d.id-1])
-                    .attr("fill", "#FF0000") // Red on hover
-                    .attr("stroke", "#CC0000");
-                
-                // Show tooltip
+                // change color if this isn't the active point
+                if (activePoint !== d.id) {
+                    d3.select(diamonds.nodes()[d.id-1])
+                        .attr("fill", "#FF0000")
+                        .attr("stroke", "#CC0000");
+                }
+    
+                // show tooltip regardless
                 tooltip
-                    .style("opacity", 1)
-                    .html(d.name)
-                    .style("left", (d.x + 15) + "px")
-                    .style("top", (d.y - 15) + "px");
+                .style("opacity", 1)
+                .html(d.name)
+                .style("left", (d.x + 15) + "px")
+                .style("top", (d.y - 15) + "px");
             })
             .on("mouseout", function(event, d) {
-                // Reset diamond color if not selected
-                if (!selectedPoints.has(d.id)) {
+                // reset to black if not the active point
+                if (activePoint !== d.id) {
                     d3.select(diamonds.nodes()[d.id-1])
-                        .attr("fill", "#000000") // Back to black
+                        .attr("fill", "#000000")
                         .attr("stroke", "#444444");
                 } else {
+                    // if active point, ensure it stays red
                     d3.select(diamonds.nodes()[d.id-1])
-                        .attr("fill", "#9b59b6") 
-                        .attr("stroke", "#8e44ad");
+                    .attr("fill", "#FF0000")
+                    .attr("stroke", "#CC0000");
                 }
-                
-                // Hide tooltip
+    
+                // hide tooltip
                 tooltip.style("opacity", 0);
             })
             .on("click", function(event, d) {
-                // Toggle selection state
-                if (selectedPoints.has(d.id)) {
-                    selectedPoints.delete(d.id);
+                // if clicking on the currently active point, deselect it
+                if (activePoint === d.id) {
+                    // reset its color to black
                     d3.select(diamonds.nodes()[d.id-1])
-                        .attr("fill", "#000000") // Back to black
+                        .attr("fill", "#000000")
                         .attr("stroke", "#444444");
-                    
-                    // If this was the active point, clear the plot
-                    if (activePoint === d.id) {
-                        clearPlot();
-                        activePoint = null;
-                    }
-                } else {
-                    selectedPoints.add(d.id);
-                    d3.select(diamonds.nodes()[d.id-1])
-                        .attr("fill", "#9b59b6") 
-                        .attr("stroke", "#8e44ad");
-                    
-                    // Set this as the active point and show its plot
-                    showPlot(d);
-                    activePoint = d.id;
-                }
-            });
         
-        // Function to show plot for a point
+                    // clear the active point and plot
+                    activePoint = null;
+                    clearPlot();
+            } else {
+                // if there's already an active point, reset its color
+                if (activePoint !== null) {
+                    d3.select(diamonds.nodes()[activePoint-1])
+                        .attr("fill", "#000000")
+                        .attr("stroke", "#444444");
+                }
+        
+                // set this as the new active point
+                activePoint = d.id;
+        
+                // change its color to red
+                d3.select(diamonds.nodes()[d.id-1])
+                    .attr("fill", "#FF0000")
+                    .attr("stroke", "#CC0000");
+        
+                // show its plot
+                showPlot(d);
+            }
+        });
+            
+        
+        // function to show plot for a point --> PLACEHOLDER
         function showPlot(point) {
             const plotContainer = d3.select("#plot");
             
-            // Clear previous plot content
+            // clear previous plot content
             plotContainer.html("");
             
-            // Create SVG for the plot
+            // create SVG for the plot
             const plotSvg = plotContainer.append("svg")
                 .attr("width", 800)
                 .attr("height", 500);
             
-            // Add placeholder text
+            // add placeholder text --> TO CHANGE
             plotSvg.append("text")
                 .attr("x", 250)
                 .attr("y", 400)
@@ -157,7 +168,7 @@
             // plotFunction(point.id, plotSvg);
         }
         
-        // Function to clear the plot
+        // function to clear the plot
         function clearPlot() {
             d3.select("#plot").html('<p id="plot-message">Click on a point to see details</p>');
         }
