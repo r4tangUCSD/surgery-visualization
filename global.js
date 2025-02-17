@@ -33,6 +33,18 @@ console.log('IT’S ALIVE!');
  let selectedLocation = null;
  let totalCases = 0;
  let maxCount = 0; // Store the maximum count across all possible filters
+
+ function show_body(gender) {
+    const body_image = d3.select('#body');
+    body_image.selectAll('*').remove();
+    body_image.append('img')
+    .attr('src', `./images/${gender}_figure.png`)
+    .attr('alt', 'Description of image')
+    .attr('height', 600)
+    .attr('width', 900);
+ }
+ 
+ show_body(selectedSex);
  
  const svg = d3.select("#chart")
      .append("svg")
@@ -187,5 +199,6 @@ console.log('IT’S ALIVE!');
          selectedSex = d.value;
          filterButtons.classed('selected', btn => btn.value === selectedSex);
          create_graph(processedData);
+         show_body(selectedSex);
      });
  });
