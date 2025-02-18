@@ -46,6 +46,6 @@ body {
 
 #numbers {
     display: grid;
-    margin-left: 200px;
+    margin-left: 150px;
     grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
 }
