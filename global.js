@@ -12,6 +12,9 @@ let clickedLocation;
 let totalCases = 0;
 let maxCount = 0; // Store the maximum count across all possible filters
 
+// get tooltip element
+const hover_tooltip = d3.select("#tooltip_hover");
+
 
 // button for gender
 
@@ -120,6 +123,14 @@ function hoverfunc(data) {
          .style("left", (d.x + 15) + "px")
          .style("top", (d.y - 15) + "px");
         //dynamically change histogram and aggregates
+
+        hover_tooltip
+                .style("opacity", 1)
+                .html(d.name)
+                .style("left", (d.x + 200) + "px")
+                .style("top", (d.y - 15) + "px");
+
+
         create_graph(data);
         
     })
@@ -149,10 +160,12 @@ function hoverfunc(data) {
             tooltip.style("opacity", 1)
             .html('Select a Diamond')
             .style("left", (d.x + 15) + "px")
-            .style("top", (d.y - 15) + "px");;
+            .style("top", (d.y - 15) + "px");
             selectedLocation = null;
             create_graph(data);
          }
+
+         hover_tooltip.style("opacity", 0);
 
     })
     .on("click", function(event, d) {
