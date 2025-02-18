@@ -43,3 +43,9 @@ body {
     display: grid;
     grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
 }
+
+#numbers {
+    display: grid;
+    margin-left: 200px;
+    grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
+}

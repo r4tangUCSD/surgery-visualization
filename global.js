@@ -221,6 +221,8 @@ function hoverfunc(data) {
  .append("g")
  .attr("transform", `translate(${margin.left},${margin.top})`);
 
+ const svg2 = d3.select("#aggregation_data")
+
 // function to show plot for a point --> PLACEHOLDER
 function showPlot(point) {
     const plotContainer = d3.select("#plot");
@@ -353,6 +355,7 @@ function repositionDiamonds() {
          .nice();
 
      svg.selectAll("*").remove();
+     svg2.selectAll("*").remove();
 
      // Add X axis with more space for label
      const xAxis = svg.append("g")
@@ -387,28 +390,29 @@ function repositionDiamonds() {
          .attr("width", x.bandwidth())
          .attr("height", d => height - y(d.count))
          .attr("fill", colorMap[selectedSex]);
+         
 
-    statsGroup = svg.append("g")
+    statsGroup = svg2.append("g")
         .attr("id", "aggregates")
          .attr("transform", `translate(${width + 10}, 20)`);
 
-     statsGroup.append("text")
+     statsGroup.append("p")
          .attr("class", "stats-label")
          .attr("y", 0)
          .text(`Average: ${average.toFixed(1)} days`);
 
-     statsGroup.append("text")
+     statsGroup.append("p")
          .attr("class", "stats-label")
          .attr("y", 25)
          .text(`Total Count: ${filteredTotal}`);
 
-     statsGroup.append("text")
+     statsGroup.append("p")
          .attr("class", "stats-label")
          .attr("y", 50)
          .text(`${percentage}% of all cases`);
 
     if (selectedSex !== 'all') {
-        statsGroup.append("text")
+        statsGroup.append("p")
         .attr("class", "stats-label")
         .attr("y", 75)
         .text(`${gender_pct}% of ${selectedSex} cases`);
