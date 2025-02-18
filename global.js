@@ -389,6 +389,7 @@ function repositionDiamonds() {
          .attr("fill", colorMap[selectedSex]);
 
     statsGroup = svg.append("g")
+        .attr("id", "aggregates")
          .attr("transform", `translate(${width + 10}, 20)`);
 
      statsGroup.append("text")
