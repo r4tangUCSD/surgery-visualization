@@ -146,7 +146,10 @@ function hoverfunc(data) {
             selectedLocation = clickedLocation;
             create_graph(data);
          } else {
-            tooltip.style("opacity", 0);
+            tooltip.style("opacity", 1)
+            .html('Select a Diamond')
+            .style("left", (d.x + 15) + "px")
+            .style("top", (d.y - 15) + "px");;
             selectedLocation = null;
             create_graph(data);
          }
@@ -163,7 +166,10 @@ function hoverfunc(data) {
             // clear the active point and plot
             activePoint = null;
             clickedLocation = null;
-            tooltip.style("opacity", 0);
+            tooltip.style("opacity", 1)
+            .html("Select a Diamond")
+            .style("left", (d.x + 15) + "px")
+            .style("top", (d.y - 15) + "px");;
 
             clearPlot();
     } else {
@@ -173,7 +179,10 @@ function hoverfunc(data) {
                 .attr("fill", "#000000")
                 .attr("stroke", "#444444");
             clickedLocation = null;
-            tooltip.style("opacity", 0);
+            tooltip.style("opacity", 1)
+            .html("Select a Diamond")
+            .style("left", (d.x + 15) + "px")
+            .style("top", (d.y - 15) + "px");;
         }
 
         // set this as the new active point
@@ -433,6 +442,9 @@ function repositionDiamonds() {
         create_graph(processedData);
         show_body(selectedSex);
     });
+
+    tooltip.style("opacity", 1)
+    .html("Select a Diamond");
     
     silhouette_img();
     diamond_func();
