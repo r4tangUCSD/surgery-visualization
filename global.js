@@ -117,20 +117,23 @@ function hoverfunc(data) {
 
         selectedLocation = d.name;
          // show tooltip regardless
+         // leave as is
          tooltip
          .style("opacity", 1)
          .html(d.name)
-         .style("left", (d.x + 15) + "px")
-         .style("top", (d.y - 15) + "px");
-        //dynamically change histogram and aggregates
+         .style("left", (d.xRatio) + "px")
+         .style("top", (d.yRatio) + "px");
+
+         console.log(d);
 
         hover_tooltip
                 .style("opacity", 1)
                 .html(d.name)
-                .style("left", (d.x + 200) + "px")
-                .style("top", (d.y - 15) + "px");
+                .style("left", (d.xRatio * width + 20) + "px")
+                .style("top", (d.yRatio * height + 180) + "px");
 
 
+        //dynamically change histogram and aggregates
         create_graph(data);
         
     })
