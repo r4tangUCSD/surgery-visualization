@@ -1,3 +1,9 @@
+h1 {
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    position: center;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -9,6 +15,9 @@ body {
     display: flex;
     gap: 30px;
 }
+
+/* BODY + PLOTS */
+
 .silhouette-container {
     position: relative;
     width: 800px;
@@ -56,5 +65,61 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: oklch(84.26% 0 333);
+}
 
+/* BUTTONS */
+
+.button-container {
+    display: flex;
+    gap: 2px;
+    /* You can adjust position with margin/padding */
+    margin: 20px;
+}
+
+.filter-button {
+    font-family: 'Work Sans', serif;
+    font-weight: 400;
+    flex: 1;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    text-align: center;
+}
+
+.filter-button:hover {
+    border-color: #4a4a4a;
+}
+
+.filter-button.selected {
+    border-color: #4a4a4a;
+}
+
+#all-button {
+    background-color: #a6a6a6;
+}
+
+#female-button {
+    background-color: #ffaafa;
+}
+
+#male-button {
+    background-color: #9bd5ec;
+}
+
+.axis-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 12px;
+    fill: #333;
+}
+
+.stats-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+}
+
+/* Ensure axis labels are visible */
+.tick text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 11px;
 }
