@@ -39,19 +39,39 @@ body {
     transition: opacity 0.3s;
 }
 
+#tooltip {
+    text-align: center;
+    background-color: oklch(91.82% 0 285);
+    color: black;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+    align-items: center;
+    margin: auto;
+    font-weight: bold;
+
+}
+
 #project {
     display: grid;
     grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
 }
 
+#statistics {
+    align-items: center;
+}
 
-#aggregation_data {
-    width: 200px;
-    padding-left: 1em;
+
+#aggregates {
+    padding: 0.75em;
     border-width: 1px;
     border-style: solid;
     border-color: oklch(84.26% 0 333);
-    max-width: 100%;
+    width: 600px;
+    line-height: 1px;
+    display:grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
 
 }
 
@@ -109,6 +129,7 @@ h1 {
 .stats-label {
     font-family: 'Work Sans', sans-serif;
     font-size: 14px;
+    text-align: center;
 }
 
 /* Ensure axis labels are visible */
