@@ -44,11 +44,6 @@ body {
     grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
 }
 
-#numbers {
-    display: grid;
-    margin-left: 150px;
-    grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
-}
 
 #aggregation_data {
     width: 200px;
@@ -58,3 +53,66 @@ body {
     border-color: oklch(84.26% 0 333);
 
 }
+
+h1 {
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    position: center;
+}
+
+
+.button-container {
+    display: flex;
+    gap: 2px;
+    /* You can adjust position with margin/padding */
+    margin: 20px;
+}
+
+.filter-button {
+    font-family: 'Work Sans', serif;
+    font-weight: 400;
+    flex: 1;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    text-align: center;
+}
+
+.filter-button:hover {
+    border-color: #4a4a4a;
+}
+
+.filter-button.selected {
+    border-color: #4a4a4a;
+}
+
+#all-button {
+    background-color: #a6a6a6;
+}
+
+#female-button {
+    background-color: #ffaafa;
+}
+
+#male-button {
+    background-color: #9bd5ec;
+}
+
+.axis-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 12px;
+    fill: #333;
+}
+
+.stats-label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+}
+
+/* Ensure axis labels are visible */
+.tick text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 11px;
+}
+
