@@ -1,9 +1,3 @@
-h1 {
-    font-family: 'Work Sans', sans-serif;
-    display: flex;
-    position: center;
-}
-
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -15,9 +9,6 @@ body {
     display: flex;
     gap: 30px;
 }
-
-/* BODY + PLOTS */
-
 .silhouette-container {
     position: relative;
     width: 800px;
@@ -25,8 +16,8 @@ body {
     float: left;
 }
 .plot-container {
-    width: 800px; 
-    height: 500px; 
+    width: 800px;
+    height: 500px;
     border: 1px solid #ccc;
     display: flex;
     align-items: center;
@@ -48,26 +39,75 @@ body {
     transition: opacity 0.3s;
 }
 
+
+#tooltip {
+    text-align: center;
+    background-color: oklch(91.82% 0 285);
+    color: black;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+    align-items: center;
+    margin: auto;
+    font-weight: bold;
+
+
+}
+
+
 #project {
     display: grid;
     grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
 }
 
-#numbers {
-    display: grid;
-    margin-left: 150px;
-    grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
+
+#statistics {
+    align-items: center;
+
+
 }
 
-#aggregation_data {
-    width: 200px;
-    padding-left: 1em;
+
+
+
+
+
+#aggregates {
+    padding: 0.75em;
     border-width: 1px;
     border-style: solid;
     border-color: oklch(84.26% 0 333);
+    width: 250px;
+    line-height: 1px;
+    display:grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    margin: auto;
+
+
 }
 
-/* BUTTONS */
+
+h1, h2 {
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+    margin: 10px;
+}
+
+
+#subtitle {
+    text-align: center;
+}
+
+
+p {
+    font-family: 'Work Sans', sans-serif;
+}
+
+
+
+
+
 
 .button-container {
     display: flex;
@@ -75,6 +115,7 @@ body {
     /* You can adjust position with margin/padding */
     margin: 20px;
 }
+
 
 .filter-button {
     font-family: 'Work Sans', serif;
@@ -87,25 +128,31 @@ body {
     text-align: center;
 }
 
+
 .filter-button:hover {
     border-color: #4a4a4a;
 }
+
 
 .filter-button.selected {
     border-color: #4a4a4a;
 }
 
+
 #all-button {
     background-color: #a6a6a6;
 }
+
 
 #female-button {
     background-color: #ffaafa;
 }
 
+
 #male-button {
     background-color: #9bd5ec;
 }
+
 
 .axis-label {
     font-family: 'Work Sans', sans-serif;
@@ -113,13 +160,17 @@ body {
     fill: #333;
 }
 
+
 .stats-label {
     font-family: 'Work Sans', sans-serif;
     font-size: 14px;
+    text-align: center;
 }
+
 
 /* Ensure axis labels are visible */
 .tick text {
     font-family: 'Work Sans', sans-serif;
     font-size: 11px;
 }
+
