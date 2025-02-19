@@ -60,7 +60,9 @@ body {
 
 #statistics {
     align-items: center;
+
 }
+
 
 
 #aggregates {
@@ -68,18 +70,28 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: oklch(84.26% 0 333);
-    width: 600px;
+    width: 250px;
     line-height: 1px;
     display:grid;
     grid-template-columns: 1fr, 1fr, 1fr;
+    margin: auto;
 
 }
 
-h1 {
+h1, h2 {
     font-family: 'Work Sans', sans-serif;
-    display: flex;
-    position: center;
+    text-align: center;
+    margin: 10px;
 }
+
+#subtitle {
+    text-align: center;
+}
+
+p {
+    font-family: 'Work Sans', sans-serif;
+}
+
 
 
 .button-container {

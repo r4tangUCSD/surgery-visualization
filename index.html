@@ -13,7 +13,10 @@
 </head>
 <body>
     <h1>Surgery Time!! </h1>
-    <h1>How long will your luxury stay be?</h1>
+    <h2>How long will your luxury stay be?</h2>
+    <p id="subtitle">A comprehensive dataset of surgical patients including their hospital stay duration.</p>
+    <hr>
+    <br>
     <div id="project">
         <div id="body">
             <div id="silhouette"></div>
@@ -35,5 +38,63 @@
     <div id="Visualization">
     </div>
 
+    <hr>
+    <h2>Writeup</h2>
+
+    <h3>Introduction</h3>
+
+    <p>
+        The time patients stay in the hospital plays a huge role in their recovery and can depend on a combination of factors, such as the type of surgery, surgical location, and sex. Our visual explores information about hospital stays based on where the surgeries are performed and the patients’ sex. We made design choices to make this visualization accessible to anyone, regardless of whether they have a medical background or not. However, we think this visualization is most beneficial to hospital management teams. They can use the interaction to make data-driven decisions to predict how many days a patient would need to stay in the hospital, allowing them to decide which patients to admit and when. This is so that they can better optimize the resources dedicated to patient care as the longer the patient needs to stay in the hospital, the more resources they need to use up.
+        Our data is a subset of clinical information from the VitalDB dataset, where each entry represents a surgery patient. Our interaction involves two filters: by sex and by surgery location. 
+        Viewers select whether they want to see all surgeries, only females, or only males, via three colored buttons on the bottom of the visualization. Clicking these buttons selects the gender, changes the diagram to a corresponding body type, and changes various parts of the visualization to match the color of the selection (e.g. when ‘female’ is selected, the body and histogram turn pink). These visual cues make the current category glaringly obvious for a viewer at all times.
+        Filtering by operation location is performed by clicking on diamonds that are placed on the body diagram. The diamonds initially begin black, to signal to the user that they are deselected. When the mouse hovers on the black diamonds (surgical locations), they turn red and the corresponding location's name will appear. This initial color change signals to the user that these diamonds can be interacted with. When the diamond is clicked on, the diamond will stay red even when the mouse leaves the area. 
+        
+        From the filtered data, we display a histogram of the distribution of patients’ hospital stays. In addition to the histogram, we can see other information below about the average hospital stay, total count, and percentage of cases being analyzed in relation to all cases in our dataset. We choose a histogram because it is an accessible and accurate representation of a distribution. We leave the last bin as “14+” to group outliers together and keep the graph readable. The histogram, along with the summary statistics, allows a viewer to intuitively and effortlessly explore details about this dataset. Graphing different subsets of the data on the same axes using interaction allows viewers to easily compare different combinations of variables.
+        
+    </p>
+    <h3>Visual Encoding and Interaction</h3>
+
+    <p>
+    
+        Our goal was to create a clear and accessible visualization that represented the surgery data that we were portraying. So we quickly came to the conclusion that we should use the human body as a diagram to help users quickly identify the approximate surgery locations. This diagram makes filtering by body part intuitive for both readers without, they can access new information in a more intuitive way, without the need to understand complex medical jargon. Compared to other possible alternatives, like a simple checkbox list, we think our body diagram intuitively portrays more information and engages the viewer. 
+        
+        Color was also a major part of our design choice. Besides being just more colorful and attention grabbing, choosing the right colors is a critical part in creating an earnest visualization. Pink is typically associated with ‘female’ and blue with ‘male’. Gray was chosen as ‘all’ to designate that a query “wasn’t” choice for sex. Maintaining this color choice is important throughout the visualization to make sure that the user knows that their choice in sex has queried the information and that what they are looking at, even when they choose a different query for location, is still the same.  Other color choices include the black diamonds, which the color is often associated with ‘no choice’. Once hovered over, the option turns red, which makes it stand out more from the others to ensure that users know that their choice was made. We chose red because, not only does it stand out, it’s often used as the color for ‘selection’ as well as its connection to blood and other medical terms which goes along with our theme.
+        
+        Development Process
+            Our group communicated well throughout the whole process to complete the project. We broke down our timeline into two main parts: brainstorming and development. Brainstorming came in short bursts after our shared class times (~15 to 30 minutes). We met up for two hours to finalize our initial design (which was drafted in canvas) and to create a to-do list of tasks that needed to be completed. The actual development process was straightforward from here. Because our schedules did not always necessarily align, we worked asynchronously during development to ensure that steady and consistent progress was made. This was definitely the longest part (~15 hours). Thankfully, this was distributed evenly throughout our group members (around 3-4 hours each) due to our usage of Github’s branches to do the work asynchronously. This is detailed below, each of the two filters (sex and location) were developed separately and then these “halves” essentially were merged together by the other members to create a well formed final product. Afterwards, we reconvened one final time to add finishing touches, complete write up, and debug. This was likely the hardest part of the project, debugging, simply because there were some slight incongruencies between different branches of code and debugging the final merge was a difficult task because of it. In the future, we will do a better job in planning out the specific code itself (like variable names) to reduce time and effort dedicated to merging. Cumulatively, this project took us around 20 hours to complete (~3 to 4 for brainstorming, ~15 for development, and ~3 to 4 for the write up and finishing touches).
+        
+    </p>
+
+    <h3>Final Team Collaboration</h3> 
+
+    <p>
+        
+        Karina Zambani: Created body silhouette and hover/click functionality for each body area with labels and calls to the dynamic plotting function, filtering by gender and body part. Helped with CSS and styling for buttons, summary statistics, text, plot, and overall layout. 
+        <br>
+        <br />Ivan Chen: Created the button and visualization ‘half’ of the development process. Contributed to write up and graphical decisions.
+        <br>
+        <br />Ryan Tang: Helped with editing the body images, plotting the diamonds on the body diagram, and with merging the functionality of the two components together. Worked on drafting and revising the writeup. Helped make design decisions and debug.
+        <br>
+        <br />Vivian Lin: Made the histogram and aggregate values change dynamically. Helped with debugging and cleaning up the code. Worked on the initial drafting of the writeup. Helped with the styling and page layout.
+        
+    </p>
+
+    <h3>Data Transformation</h3> 
+
+    <p>
+        Our visual encoding and interactions come from a series of data transformations including different types of filtering, calculations, and aggregations. 
+        
+        Filtering: When creating the histogram and calculating the aggregate values including mean hospital stay, number of cases (count), and percentage relative to all cases, D3 needs to first filter the dataset to get the data according to the variable selectedSex and the surgical position we choose. For example, if we are in the “female” setting and we hover over the stomach, we will only get data for female patients with surgery done on the stomach and we will only use this filtered data to create the histogram and calculate relevant aggregate values. D3 dynamically updates the filtered data according to the user’s interaction to provide an accurate and responsive visualization based on the selected criteria. 
+        
+        Histogram: We chose to make our histogram dynamic based on selectedSex and selected surgical location. This is so that we can see the distribution of hospital stays throughout the entire filtered dataset accounting for any outliers. On a side note, the outlier can skew the mean. We binned cases 14+ days or more into one row to improve readability for viewers. Without this step, the graph could extend horizontally much more than necessary.
+        
+        Calculating Hospital Stay: In the data set, we are not given the amount of time each patient stays in the hospital, only the admission time and discharge time in the number of seconds before and after the case starts. The case start time is defined as zero for all patients and is how the dataset standardizes the perception of time. We can use the given information to calculate the hospital stay by subtracting the discharge time from the admission time. This gives us the total number of seconds the patient is in the hospital for. Next, since we wanted to get the number of days, we did unit conversion by dividing the total number of seconds by 86400 (60 secs/min * 60 mins/hour * 24 hours/day). 
+        
+        Average Hospital Stay: We chose to take the average because it will give the number of days the user can expect based on the filtration. We used D3 to get the average number of days patients with the selected criteria stay in the hospital.
+        
+        Percentage of Total Cases: We calculated percentages by taking the number of cases in the filtered dataset, dividing it by the total number of cases, and multiplying by 100.
+        </p>
+
+    <hr>
 </body>
 </html>
