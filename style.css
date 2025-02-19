@@ -68,10 +68,11 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: oklch(84.26% 0 333);
-    width: 600px;
+    width: 250px;
     line-height: 1px;
     display:grid;
     grid-template-columns: 1fr, 1fr, 1fr;
+    margin:auto;
 
 }
 
