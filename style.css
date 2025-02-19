@@ -39,7 +39,6 @@ body {
     transition: opacity 0.3s;
 }
 
-
 #tooltip {
     text-align: center;
     background-color: oklch(91.82% 0 285);
@@ -52,25 +51,16 @@ body {
     margin: auto;
     font-weight: bold;
 
-
 }
-
 
 #project {
     display: grid;
     grid-template-columns: 300px repeat(auto-fit, minmax(150px, 1fr));
 }
 
-
 #statistics {
     align-items: center;
-
-
 }
-
-
-
-
 
 
 #aggregates {
@@ -82,31 +72,15 @@ body {
     line-height: 1px;
     display:grid;
     grid-template-columns: 1fr, 1fr, 1fr;
-    margin: auto;
-
+    margin:auto;
 
 }
 
-
-h1, h2 {
+h1 {
     font-family: 'Work Sans', sans-serif;
-    text-align: center;
-    margin: 10px;
+    display: flex;
+    position: center;
 }
-
-
-#subtitle {
-    text-align: center;
-}
-
-
-p {
-    font-family: 'Work Sans', sans-serif;
-}
-
-
-
-
 
 
 .button-container {
